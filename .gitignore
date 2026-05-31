@@ -1,0 +1,22 @@
+# ZopaPro Payroll App Root Gitignore
+
+# Dependencies
+node_modules/
+vendor/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build artifacts and temp files
+zopapro-working.zip
+zopapro-working/
+deploy/
+scratch/
