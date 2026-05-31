@@ -1,98 +1,52 @@
-# HR Payroll System
+# ZopaPro HR & Payroll Application
 
-Full-stack HR payroll application with Angular frontend and Laravel API backend.
+A modern, full-stack Human Resources and Payroll Management System built to streamline employee tracking, leave management, and automated payslip generation.
 
-## Tech Stack
-- **Frontend:** Angular 20 (Standalone Components, Bootstrap 5)
-- **Backend:** Laravel 11 API (Sanctum Auth, DomPDF)
-- **Database:** MySQL
+## 🌟 Key Features
 
-## Features
-- Authentication (Register/Login)
-- Staff Management (CRUD)
-- Leave Balances (Casual & Medical)
-- Dynamic Pay Components (Earnings & Deductions)
-- Monthly Payslip Generation
-- PDF Payslip with Company Logo
-- Track Record / History
+### 👥 Employee Management
+* Maintain detailed staff records including personal information, contact details, and employment status.
+* Easily toggle active/inactive status for employees.
+* Track base salary and assign custom pay components.
 
-## Prerequisites
-- Node.js 18+
-- PHP 8.1+
-- Composer
-- MySQL
+### 🏖️ Leave & Attendance Management
+* **Leave Types Master:** Configure custom leave types (e.g., Earned Leave, Medical Leave) with default annual allowances.
+* **Leave Balances:** Automatically track how many days each employee has taken and how many they have remaining.
+* **Leave Records:** Log specific leave dates and durations.
 
-## Setup
+### 💰 Payroll & Compensation
+* **Dynamic Pay Components:** Create flexible Earnings and Deductions (e.g., Basic Pay, HRA, PF, Tax).
+* **Component Mapping:** Assign specific pay components to individual employees.
+* **Automated Calculations:** Generate monthly payslips with automatic calculation of Gross Earnings, Total Deductions, and Net Pay based on leave taken and assigned components.
 
-### 1. Database
-Create a MySQL database named `hr_payroll`:
-```sql
-CREATE DATABASE hr_payroll;
-```
+### 📄 Payslip Generation & Distribution
+* **PDF Generation:** Download beautifully formatted, professional payslips in PDF format.
+* **Email Integration:** Send payslips directly to employees' inboxes with a single click.
+* **Company Branding:** Dynamically injects company logo, name, and address into all generated payslips.
 
-### 2. Backend
-```bash
-cd backend
-composer install
-copy .env.example .env   # Edit DB credentials
-php artisan key:generate
-php artisan migrate --seed
-php artisan storage:link
-php artisan serve
-```
+### 📊 Dashboard & Analytics
+* Get an instant overview of your organization's health.
+* Track total active staff, total payroll expenditures for the current month, and recent payslip history.
 
-### 3. Frontend
-```bash
-cd frontend
-npm install
-ng serve
-```
+### ⚙️ System Settings
+* Global configuration for Company Name, Address, and Logo.
+* Uploaded logos automatically sync across the login screen, dashboard, and exported PDFs.
 
-### 4. Login
-Open http://localhost:4200
-- **Email:** admin@hr.com
-- **Password:** password
+## 🛠️ Technology Stack
 
-## API Endpoints
+* **Frontend:** Angular 17 (Standalone Components), RxJS
+* **Backend:** Laravel 11 (PHP 8.2+)
+* **Database:** MySQL / SQLite
+* **Authentication:** Laravel Sanctum (Token-based SPA Authentication)
+* **Styling:** Custom CSS with modern UI/UX principles (Glassmorphism, clean typography)
+* **PDF Engine:** Barryvdh/Laravel-DomPDF
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/login | Login |
-| POST | /api/register | Register |
-| GET | /api/dashboard | Dashboard stats |
-| GET/POST/PUT/DELETE | /api/staff | Staff CRUD |
-| GET/POST/PUT/DELETE | /api/pay-components | Pay components CRUD |
-| GET | /api/leaves/balances | Leave balances |
-| PUT | /api/leaves/balance | Update leave balance |
-| POST | /api/payslips/generate | Generate payslip |
-| GET | /api/payslips | List payslips |
-| GET | /api/payslips/{id}/download | Download PDF |
-| GET/POST | /api/settings | Company settings |
-| POST | /api/settings/logo | Upload logo |
+## 🚀 Deployment
 
-## Project Structure
-```
-HR Application/
-├── backend/                 # Laravel API
-│   ├── app/
-│   │   ├── Http/Controllers/Api/   # API controllers
-│   │   └── Models/                  # Eloquent models
-│   ├── database/migrations/        # DB migrations
-│   ├── resources/views/payslips/   # PDF template
-│   └── routes/api.php              # API routes
-├── frontend/                # Angular app
-│   ├── src/app/
-│   │   ├── auth/            # Login/Register
-│   │   ├── dashboard/       # Dashboard
-│   │   ├── staff/           # Staff management
-│   │   ├── leaves/          # Leave balances
-│   │   ├── pay-components/  # Pay components
-│   │   ├── payslips/        # Payslip gen & list
-│   │   ├── settings/        # Company settings
-│   │   ├── services/        # HTTP services
-│   │   ├── models/          # TypeScript interfaces
-│   │   ├── guards/          # Auth guard
-│   │   └── interceptors/    # HTTP interceptor
-│   └── ...
-└── setup.bat
-```
+This application includes a custom build script (`scripts/build-and-package.ps1`) designed specifically to compile and package the application for shared hosting environments (like Hostinger). 
+
+The script automatically:
+1. Builds the Angular frontend for production.
+2. Packages the Laravel backend.
+3. Generates specialized `.htaccess` and `index.php` routing patches to bypass strict shared-hosting symlink and routing restrictions.
+4. Outputs a ready-to-deploy `.zip` archive.
